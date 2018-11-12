@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Table Builder</title>
+    <style>
+        td,
+        th {
+            background: #DDD;
+            padding: 5px
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <div id="main"></div>
+    <script>
+        function tableBuilder(selector) {
+            function createTable(columnNames) {
+                // name = escapeHtml(name);
+                // town = escapeHtml(town);
+                let table = $('<table>').appendTo(selector);
+                $('<tr>').append($("<th>").text(columnNames[0])).append($("<th>").text(columnNames[1])).append($("<th>").text("Action")).appendTo(table);
+            }
+
+            function fillData(dataRows) {
+                let table = $(`${selector}>table`);
+                for (let innerArr of dataRows) {
+                    innerArr = innerArr.map((val) => { return escapeHtml(val); });
+
+                    let row = $("<tr>").append($("<td>").text(innerArr[0])).append($("<td>").text(innerArr[1])).append($("<td>").append($("<button>").text("Delete").click("click", function () {
+                        $(this).parent().parent().remove();
+                    }))).appendTo(table);
+
+                }
+            }
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            return {
+                createTable,
+                fillData
+            }
+        }
+    </script>
+    <script>
+        $(function () {
+            let builder = tableBuilder("#main");
+            builder.createTable(['Name', 'Town']);
+            builder.fillData([
+                ['Ma>ria', 'Sofia'],
+                ['Ki1`r]/il', 'Varna'],
+                ['Ani <new>', 'Ruse'],
+            ]);
+        });
+    </script>
+</body>
+
+</html>
