@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <h1>List of Items</h1>
+    <ul id="items">
+        <li>First <a href="#" class="deleteButton">Delete</a></li>
+        <li>Secont <a href="#" class="deleteButton">Delete</a></li>
+    </ul>
+    <input id="itemName" type="text" />
+    <input id="addItem" type="button" value="Add">
+
+</body>
+<script>
+    document.getElementById("addItem").addEventListener('click', addItem);
+
+    const delButtons = document.getElementsByClassName("deleteButton");
+    for (let dButtons of delButtons) {
+        debugger;
+        dButtons.addEventListener('click', removeItems);
+    }
+
+    function addItem() {
+        const itemName = document.getElementById('itemName').value;
+
+        const el = document.createElement("li");
+        el.innerHTML = itemName + ' <a href="#" class="deleteButton">Delete</a>'
+
+        el.childNodes[1].addEventListener('click', removeItems);
+
+        document.getElementById("items").appendChild(el);
+        document.getElementById('itemName').value = "";
+    }
+
+    function removeItems(evt) {
+        document.getElementById('items').removeChild(evt.target.parentNode);
+    }
+
+</script>
+
+</html>
