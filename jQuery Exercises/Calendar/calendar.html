@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?fbclid=IwAR2blmEBG4dwJoKS3ugUq3M7t1Xjuo_wKMFQ5FLH4Stry275TC_iJa82E1I"></script>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            padding: 0.25em;
+            margin: 0;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        th,
+        td {
+            width: 2.5em;
+        }
+
+        .today {
+            background-color: orange;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+    </div>
+    <script src="calendar.js"></script>
+    <script>
+        window.onload = function () {
+            calendar([10, 8, 2016]);
+            calendar([15, 1, 2017]);
+        }
+    </script>
+</body>
+
+</html>
