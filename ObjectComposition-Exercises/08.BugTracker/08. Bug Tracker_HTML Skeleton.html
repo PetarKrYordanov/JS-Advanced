@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bug Tracker</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js?fbclid=IwAR2blmEBG4dwJoKS3ugUq3M7t1Xjuo_wKMFQ5FLH4Stry275TC_iJa82E1I"></script>
+    <style>
+        #wrapper {
+            width: 800px;
+            border: 1px solid black;
+        }
+
+        #titlebar {
+            background-color: beige;
+            font-size: 2em;
+            padding: 0.5em;
+        }
+
+        .report {
+            margin: 1em;
+            border: 1px solid black;
+            width: 400px;
+        }
+
+        .report .title {
+            background-color: cornflowerblue;
+            color: white;
+            padding: 0.25em;
+            position: relative;
+        }
+
+        .report .body p {
+            margin: 0.5em;
+        }
+
+        .report .title .status {
+            display: inline-block;
+            right: 0px;
+            position: absolute;
+            margin-right: 0.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="titlebar">Bug tracker</div>
+        <div id="content">
+
+        </div>
+    </div>
+    <script src="bug-tracker.js"></script>
+    <script>
+        var tracker = bugTracker();
+
+        tracker.report('guy', 'report content', true, 5);
+        tracker.output('#content');
+        tracker.report('second guy', 'report content 2', true, 3);
+        tracker.report('abv', 'report content three', true, 4);
+        tracker.remove(1);
+    </script>
+</body>
+
+</html>
